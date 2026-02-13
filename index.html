@@ -1,13 +1,182 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Premium Card UI</title>
+
+<style>
+* { box-sizing: border-box; }
+
+:root {
+    --bg1:#74ebd5;
+    --bg2:#acb6e5;
+    --glass: rgba(255,255,255,0.35);
+    --text:#222;
+    --title:#1e2a78;
+    --sub:#256d85;
+}
+
+.dark {
+    --bg1:#0f172a;
+    --bg2:#020617;
+    --glass: rgba(255,255,255,0.08);
+    --text:#f1f1f1;
+    --title:#9fa8ff;
+    --sub:#6ee7b7;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    background: linear-gradient(135deg,var(--bg1),var(--bg2));
+    color: var(--text);
+    transition: 0.4s;
+}
+
+/* NAVBAR */
+nav {
+    backdrop-filter: blur(10px);
+    background: var(--glass);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 40px;
+    position: sticky;
+    top: 0;
+}
+
+nav a {
+    text-decoration: none;
+    font-weight: 600;
+    color: var(--text);
+    margin: 0 15px;
+    position: relative;
+}
+
+nav a::after {
+    content:"";
+    position:absolute;
+    width:0;
+    height:2px;
+    background:#7b5cff;
+    left:0;
+    bottom:-4px;
+    transition:.3s;
+}
+
+nav a:hover { width:100%; }
+
+/* TOGGLE */
+.toggle {
+    padding: 8px 18px;
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
+    background: linear-gradient(135deg,#4b2ad6,#7b5cff);
+    color: white;
+    font-weight: 600;
+}
+
+/* GRID */
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 50px;
+    padding: 80px 60px;
+}
+
+/* CARD */
+.card {
+    padding: 25px;
+    border-radius: 20px;
+    background: var(--glass);
+    backdrop-filter: blur(15px);
+    box-shadow: 0 20px 40px rgba(0,0,0,.25);
+    text-align: center;
+    animation: float 4s ease-in-out infinite;
+    transition: .3s;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+}
+
+.card:nth-child(2) { animation-delay: 1s; }
+.card:nth-child(3) { animation-delay: 2s; }
+.card:nth-child(4) { animation-delay: 3s; }
+
+@keyframes float {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+}
+
+.card img {
+    width: 100%;
+    border-radius: 15px;
+    border: 2px solid rgba(255,255,255,.3);
+}
+
+/* TEXT */
+h1 { margin: 15px 0 5px; color: var(--title); }
+h2 { margin: 0; font-size: 18px; color: var(--sub); }
+p  { color: var(--text); }
+
+</style>
 </head>
+
 <body>
-    <h1>Hello World..!</h1>
-    <h2>PDEA 's COEM
-    </h2>
+
+<nav>
+    <div>
+        <a href="#">Home</a>
+        <a href="#">About</a>
+        <a href="#">Contact</a>
+        <a href="#">Support</a>
+    </div>
+    <button class="toggle" onclick="toggleDark()">Dark Mode</button>
+</nav>
+
+<div class="cards">
+
+<div class="card">
+    <img src="https://imgs.search.brave.com/kLCLTmK3fL1KTrxs7r6kB1CYAZJp0cfV1z4EAEEhrwo/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9tZWRp/YS5nZXR0eWltYWdl/cy5jb20vaWQvMjEz/NTg0MDczNy9waG90/by9zdGFuZm9yZC1j/YWxpZm9ybmlhLWdv/b2dsZS1jZW8tc3Vu/ZGFyLXBpY2hhaS1z/cGVha3MtZHVyaW5n/LXRoZS1zdGFuZm9y/ZC1idXNpbmVzcy1n/b3Zlcm5tZW50Lmpw/Zz9zPTYxMng2MTIm/dz0wJms9MjAmYz15/T3lKZTZ4NDM0QzZn/bnlwTmk2OVV5SWNr/T0ZCaVgyNnR4RDRk/NkVGYms0PQ">
+    <h1>Sundar Pichai</h1>
+    <h2>CEO – Google</h2>
+    <p>Driving global AI innovation</p>
+</div>
+
+<div class="card">
+   
+    <img src="https://imgs.search.brave.com/f_C0G-f_KHr1ZoZv_JyDwAzv9AtmYcRMY5p4BuOB5L8/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9tZWRp/YS5nZXR0eWltYWdl/cy5jb20vaWQvMjE5/ODk3MDEwMS9waG90/by93YXNoaW5ndG9u/LWRjLXRlc2xhLWFu/ZC1zcGFjZXgtY2Vv/LWVsb24tbXVzay1k/ZWxpdmVycy1yZW1h/cmtzLWFzLWhlLWpv/aW5zLXUtcy1wcmVz/aWRlbnQuanBnP3M9/NjEyeDYxMiZ3PTAm/az0yMCZjPXpaV29o/MDhvZThVQkkwLWFo/a0ZjS3Z3MDBGTDJm/LU1qS3JKWkk0SHN1/elE9">
+    
+    <h1>Elon Musk</h1>
+    <h2>CEO – Tesla & SpaceX</h2>
+    <p>Revolutionizing future tech</p>
+</div>
+
+<div class="card">
+    <img src="https://imgs.search.brave.com/qhgwtvtcYpHq9qptX2UqtSMy0tSsUyiW6niRIh-aPWQ/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9tZWRp/YS5nZXR0eWltYWdl/cy5jb20vaWQvMTA2/NjEwODAzOC9waG90/by9iZWxsZXZ1ZS13/YS1taWNyb3NvZnQt/Y2VvLXNhdHlhLW5h/ZGVsbGEtc21pbGVz/LWR1cmluZy10aGUt/cXVlc3Rpb24tYW5k/LWFuc3dlci1wb3J0/aW9uLW9mLXRoZS5q/cGc_cz02MTJ4NjEy/Jnc9MCZrPTIwJmM9/eVBnQUpGTkFWTXZk/dmRIdUFpdms4ZGoz/QkUzUkF2SV9SVFll/RURtTGxIcz0">
+    <h1>Satya Nadella</h1>
+    <h2>CEO – Microsoft</h2>
+    <p>Leading cloud transformation</p>
+</div>
+
+<div class="card">
+    <img src="https://imgs.search.brave.com/aK-HkE04-Dfj6Bw51Ec7xA5dDT-4Xo5j1w0DIzqDqso/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9tZWRp/YS5nZXR0eWltYWdl/cy5jb20vaWQvMTY2/MDg3NzUxMy9waG90/by90aW0tY29vay1j/aGllZi1leGVjdXRp/dmUtb2ZmaWNlci1v/Zi1hcHBsZS1pbmMt/aG9sZHMtYW4taXBo/b25lLTE1LXByby1t/YXgtZHVyaW5nLWFu/LWV2ZW50LWF0Lmpw/Zz9zPTYxMng2MTIm/dz0wJms9MjAmYz1I/cUZ4R3lKRTZMRE55/ejRqXzRYcXdHNFRs/Y2VSY0gzc3czU0hm/eDdlVFhJPQ">
+    <h1>Tim Cook</h1>
+    <h2>CEO – Apple</h2>
+    <p>Innovating consumer experience</p>
+</div>
+
+</div>
+
+<script>
+function toggleDark(){
+    document.body.classList.toggle("dark");
+}
+</script>
+
 </body>
 </html>
